@@ -1,0 +1,58 @@
+.grid {
+  height: 500px;
+  width: 500px;
+  display: grid;
+  grid-template: repeat(5, 1fr) / repeat(5, 1fr);
+  grid-gap: 10px 15px;
+  position: relative;
+  margin: 0 auto;
+}
+.red{
+  display: flex;
+    justify-content: center;
+align-items: center;
+   font-family: "Fredericka the Great";
+  font-size: 18px;
+  font-weight: 400;
+    background-color: rgba(93, 188, 210, 0.35);
+}
+
+.blue{
+  display: flex;
+    justify-content: center;
+align-items: center;
+   font-family: "Fredericka the Great";
+  font-size: 18px;
+  font-weight: 400;
+    background-color: rgb(245, 107, 86);
+}
+
+.gray{
+  display: flex;
+    justify-content: center;
+align-items: center;
+   font-family: "Fredericka the Great";
+  font-size: 18px;
+  font-weight: 400;
+    background-color: rgb(219, 213, 213);
+}
+
+
+.black{
+  display: flex;
+    justify-content: center;
+align-items: center;
+   font-family: "Fredericka the Great";
+  font-size: 18px;
+  font-weight: 400;
+    background-color: rgb(128, 125, 125);
+}
+
+div.button{
+  position: relative;
+    margin-left: 75%;
+    border: black solid 1px;
+    margin-top: 50px;
+    padding: 10px;
+    display: inline-block;
+}
