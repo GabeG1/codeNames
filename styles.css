@@ -1,3 +1,14 @@
+h1{
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+  font-family: "Arial";
+  opacity: 0.75;
+  height: 30px;
+  padding: 20px;
+}
+
+
 .grid {
   height: 500px;
   width: 500px;
@@ -7,52 +18,43 @@
   position: relative;
   margin: 0 auto;
 }
-.red{
+
+.box{
   display: flex;
     justify-content: center;
 align-items: center;
    font-family: "Fredericka the Great";
   font-size: 18px;
   font-weight: 400;
-    background-color: rgba(93, 188, 210, 0.35);
+  
+}
+.red{
+       background-color:rgb(255, 247, 204);
 }
 
 .blue{
-  display: flex;
-    justify-content: center;
-align-items: center;
-   font-family: "Fredericka the Great";
-  font-size: 18px;
-  font-weight: 400;
-    background-color: rgb(245, 107, 86);
+  background-color:rgb(255, 247, 204);
 }
 
 .gray{
-  display: flex;
-    justify-content: center;
-align-items: center;
-   font-family: "Fredericka the Great";
-  font-size: 18px;
-  font-weight: 400;
-    background-color: rgb(219, 213, 213);
+
+  background-color:rgb(255, 247, 204);
 }
 
 
 .black{
-  display: flex;
-    justify-content: center;
-align-items: center;
-   font-family: "Fredericka the Great";
-  font-size: 18px;
-  font-weight: 400;
-    background-color: rgb(128, 125, 125);
+  background-color:rgb(255, 247, 204);
 }
 
 div.button{
   position: relative;
     margin-left: 75%;
-    border: black solid 1px;
+    border: hsla(10, 60%, 20%,.25) solid 1px;
     margin-top: 50px;
     padding: 10px;
     display: inline-block;
+    cursor: pointer;
+    background-color: white;
+    color: rbga(0,0,0, .5);
+     box-shadow: 5px 5px 5px hsl(193, 0%, 65%); 
 }
