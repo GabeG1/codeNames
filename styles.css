@@ -26,7 +26,6 @@ align-items: center;
    font-family: "Fredericka the Great";
   font-size: 18px;
   font-weight: 400;
-  
 }
 .red{
        background-color:rgb(255, 247, 204);
@@ -46,15 +45,37 @@ align-items: center;
   background-color:rgb(255, 247, 204);
 }
 
-div.button{
-  position: relative;
-    margin-left: 75%;
-    border: hsla(10, 60%, 20%,.25) solid 1px;
-    margin-top: 50px;
-    padding: 10px;
+.button{
+position: relative;
+
+    border: hsla(10, 60%, 20%,.25) solid 1.2px;
+    margin-bottom: 1em;
+    margin-top: 1em;
+  margin-left: 60%;
+    padding: 5px;
     display: inline-block;
     cursor: pointer;
+     box-shadow: 5px 5px 5px hsl(193, 0%, 65%); 
+       text-align: center;
+         width: 5em;
+}
+
+#codeMaster {
     background-color: white;
     color: rbga(0,0,0, .5);
-     box-shadow: 5px 5px 5px hsl(193, 0%, 65%); 
 }
+
+#teamButton {
+
+  font-weight: bold;
+  font-family: "Arial";
+  background-color: hsl(62, 75%, 91%);
+
+}
+
+
+#resetGame
+{
+  margin-left: 10px;
+}
+

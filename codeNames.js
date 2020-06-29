@@ -29,13 +29,65 @@ for(i = 0; i < 25; i++)
 whoFirst = Math.floor(Math.random() * (2))+1;
 array = shuffle(arr);
 
+
+let teamButton = document.getElementById("teamButton");
+
+function mouseOut(event){
+  event.target.style.boxShadow = '5px 5px 5px hsl(193, 0%, 65%)';
+  event.target.style.border ='hsla(10, 60%, 20%,.25) solid 1px';
+}
+
+teamButton.onmouseover = () => {
+ teamButton.style.boxShadow = '5px 5px 5px hsl(90, 92%, 86%)';
+ teamButton.style.border = '1px solid hsl(90, 89%, 68%)';
+ teamButton.innerHTML = "change team"
+ teamButton.style.color = 'hsl(153, 55%, 55%)';
+};
+
+function changeTeamtoRed(){
+  teamButton.innerHTML = 'red turn';
+  teamButton.style.color = 'rgb(247, 125, 111)';
+  redTurn = true;
+}
+
+
+function changeTeamtoBlue(){
+  teamButton.innerHTML = 'blue turn';
+  teamButton.style.color = 'rgb(109, 192, 252)';
+  redTurn = false;
+}
+teamButton.addEventListener("mouseout", mouseOut);
+teamButton.addEventListener("mouseout", function() {
+  if(redTurn)
+  {
+    changeTeamtoRed();
+  }
+  else
+  {
+    changeTeamtoBlue();
+  }
+});
+
+let redTurn;
+teamButton.onclick = () => {
+  if(redTurn == true)
+  {
+    changeTeamtoBlue();
+  }
+  else {
+    changeTeamtoRed();
+  }
+}
 let curColor;
 if(whoFirst == 1)
 {
   curColor = "red";
+  redTurn = true;
+  changeTeamtoRed();
 }
 else{
   curColor = "blue";
+  changeTeamtoBlue();
 }
 
 for(i = 0; i < 9; i++){
@@ -79,18 +131,23 @@ for(i = 0; i < 25; i++)
 }
 
 let codeMasterButton = document.getElementById("codeMaster");
+let resetButton = document.getElementById("resetGame");
 
-codeMasterButton.onmouseover = () => {
-  codeMasterButton.style.boxShadow = '5px 5px 5px hsl(177, 74%, 73%)';
-  codeMasterButton.style.border = '1px solid hsl(182, 80%, 82%)';
-  };
 
-codeMasterButton.onmouseout = () => {
-  codeMasterButton.style.boxShadow = '5px 5px 5px hsl(193, 0%, 65%)';
-  codeMasterButton.style.border ='hsla(10, 60%, 20%,.25) solid 1px';
-  };
+function bottomButtonsMouseOver(event)
+{
+  event.target.style.boxShadow = '5px 5px 5px hsl(177, 74%, 73%)';
+  event.target.style.border = '1px solid hsl(182, 80%, 82%)';
+}
+
+codeMasterButton.addEventListener("mouseout", mouseOut);
+resetButton.addEventListener("mouseout", mouseOut);
+codeMasterButton.addEventListener("mouseover", bottomButtonsMouseOver);
+resetButton.addEventListener("mouseover", bottomButtonsMouseOver);
+
 
 var isMaster = false;
+
 
 function setBackgroundRed(element)
 {
@@ -163,6 +220,17 @@ for(i = 0; i < 25; i++)
    
 };
 
+resetButton.onclick = () => {
+  var reset = confirm("Are you sure you want to reset Game?")
+if(reset)
+{
+  for(i=0; i<25; i++){
+    setBackgroundtoDefault(box[i]);
+  }
+}
+}
+
+
 isClicked = [];
 isClicked.length = 25;
 for(var i = 0; i < 25; i++)
@@ -172,32 +240,51 @@ for(var i = 0; i < 25; i++)
 let box = document.getElementsByClassName("box");
 
 let onHover = function(event) {
+  if(!isClicked[event.target.id] && !isMaster)
+  {
      box[event.target.id].onclick = onClick;
   event.target.style.cursor = "pointer";
+  }
 }
 
 let onClick = function(event) {
   box[event.target.id].style.cursor = "default";
+
 
  isClicked[event.target.id] = true;
  switch(event.target.className) {
    
   case 'box red':
     setBackgroundRed(box[event.target.id]);
+    if(redTurn == false)
+    {
+      changeTeamtoRed();
+    }
     break;
   case 'box blue':
     setBackgroundBlue(box[event.target.id]);
+    if(redTurn == true)
+    {
+      changeTeamtoBlue();
+    }
     break;
   case 'box gray':
     setBackgroundGray(box[event.target.id]);
+    if(redTurn == true)
+    {
+      changeTeamtoBlue();
+    }
+    else{
+      changeTeamtoRed();
+    }
     break;
   default:
     setBackgroundBlack(box[event.target.id]);
     }
-     removeEventListenerbox('click', box[event.target.id]);
-  removeEventListenerbox('mouseover', box[event.target.id]);
+
 
 }
+
   box.forEach(addEventListener('mouseover', onHover));
 
 
