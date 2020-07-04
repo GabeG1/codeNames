@@ -19,6 +19,53 @@ function shuffle(array) {
   return array;
 }
 
+function getRandomLetter()
+{
+ let randNum =  Math.floor((Math.random() * 26) + 1);
+ return String.fromCharCode(randNum+96);
+}
+
+
+function setRandomWord(box)
+{
+  const randLetter = getRandomLetter();
+    const url = `https://api.datamuse.com/words?sp=${randLetter}*&md=p&max=200`;
+    
+    const xhr = new XMLHttpRequest();
+    xhr.responseType = 'json';
+  
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+       
+        let result = xhr.response;
+        isNoun = false;
+        while(isNoun == false)
+        {
+        rand = Math.floor(Math.random() * 200);
+        if(result[rand].tags){
+          for(i=0; i < result[rand].tags.length; i++)
+          {
+            if(result[rand].tags[i] == "n")
+            {
+              isNoun = true;
+              break;
+            }   
+          } 
+        }    
+        }
+        console.log(result[rand].word);
+        box.innerHTML = result[rand].word;
+      }
+    };
+    xhr.open('GET', url);
+    xhr.send();
+
+}
+
+let script = document.createElement('script');
+script.src = "https://randomwordgenerator.com/.json?callback=getRandomWord";
+document.body.append(script);
+
 
 let arr = [];
 let boxes = [];
@@ -125,8 +172,8 @@ for(i = 0; i < 25; i++)
     else  if(boxes[i] == 'black'){
         newBox.className = 'box black';
         }
-        newBox.innerHTML = i+1;
         newBox.id = i;
+      setRandomWord(newBox);
         source.appendChild(newBox);
 }
 
@@ -239,13 +286,6 @@ for(var i = 0; i < 25; i++)
 }
 let box = document.getElementsByClassName("box");
 
-let onHover = function(event) {
-  if(!isClicked[event.target.id] && !isMaster)
-  {
-     box[event.target.id].onclick = onClick;
-  event.target.style.cursor = "pointer";
-  }
-}
 
 let onClick = function(event) {
   box[event.target.id].style.cursor = "default";
@@ -285,7 +325,19 @@ let onClick = function(event) {
 
 }
 
-  box.forEach(addEventListener('mouseover', onHover));
+let onHover = function(event) {
+  if(!isClicked[event.target.id] && !isMaster)
+  {
+     box[event.target.id].onclick = onClick;
+  event.target.style.cursor = "pointer";
+  }
+}
 
+
+for(i = 0; i < box.length; i++)
+{
+  box[i].addEventListener('mouseover', onHover);
+
+}
 
 
