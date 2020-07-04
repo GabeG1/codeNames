@@ -87,6 +87,7 @@ function mouseOut(event){
 teamButton.onmouseover = () => {
  teamButton.style.boxShadow = '5px 5px 5px hsl(90, 92%, 86%)';
  teamButton.style.border = '1px solid hsl(90, 89%, 68%)';
+ teamButton.style.width = "auto";
  teamButton.innerHTML = "change team"
  teamButton.style.color = 'hsl(153, 55%, 55%)';
 };
