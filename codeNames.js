@@ -274,6 +274,7 @@ if(reset)
 {
   for(i=0; i<25; i++){
     setBackgroundtoDefault(box[i]);
+    setRandomWord(box[i]);
   }
 }
 }
